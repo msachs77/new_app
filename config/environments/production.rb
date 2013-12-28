@@ -80,5 +80,13 @@ SampleApp::Application.configure do
   # required for heroku
   # set to actual host
   config.action_mailer.default_url_options = { :host => 'msachsdemo.com' }
-
+  # set paperclip to save images to S3
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+}
 end
